@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+background-image: url('https://www.bhmpics.com/downloads/sunset-beach-wallpaper-/19.5474451.jpg');
+        }       
+        .container {
+            text-align: center;
+            background-color: #DB7093;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+
+        }
+
+        select, button {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: MeadiumPurple;
+        }
+        #weatherInfo {
+            margin-top: 20px;
+        }
+        .weather-card {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: left;
+            display: inline-block;
+            min-width: 200px;
+
+        }
+  
+                   
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Weather Information</h1>
+        <select id="locationSelect">
+            <option value="">Select a location</option>
+            <option value="newyork">New York</option>
+            <option value="london">London</option>
+            <option value="tokyo">Tokyo</option>
+            <option value="sydney">Sydney</option>
+            <option value="banglore">banglore</option>
+            <option value="chennai">chennai</option>
+        </select>
+        <button id="getWeatherBtn">Get Weather</button>
+        <div id="weatherInfo">
+            <!-- Weather data will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+        const weatherData = {
+            newyork: {
+                temperature: '20°C',
+                conditions: 'cloudy'
+            },
+            london: {
+                temperature: '15°C',
+                conditions: 'Overcast'
+            },
+            tokyo: {
+                temperature: '22°C',
+                conditions: 'Clear sky'
+            },
+            sydney: {
+                temperature: '25°C',
+                conditions: 'Partly cloudy'
+            },
+           banglore: {
+               temperature: '28°C',
+               conditions: 'Sunny'
+           },
+           chennai: {
+               temperature: '30°C',
+               conditions: 'Too Hot'
+           }
+           };
+
+        document.getElementById('getWeatherBtn').addEventListener('click', () => {
+            const location = document.getElementById('locationSelect').value;
+            if (location) {
+                displayWeatherData(weatherData[location]);
+            } else {
+                alert('Please select a location.');
+            }
+        });
+
+        function displayWeatherData(data) {
+            const weatherInfo = document.getElementById('weatherInfo');
+            weatherInfo.innerHTML = `
+                <div class="weather-card">
+                    <p><strong>Temperature:</strong> ${data.temperature}</p>
+                    <p><strong>Conditions:</strong> ${data.conditions}</p>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
